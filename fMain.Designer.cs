@@ -32,13 +32,17 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ficheiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.criarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filmesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alugueresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblFilmes = new System.Windows.Forms.Label();
             this.dgvFilmes = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.filmesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.alugueresToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilmes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -48,6 +52,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ficheiroToolStripMenuItem,
+            this.criarToolStripMenuItem,
             this.editarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -69,32 +74,33 @@
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.sairToolStripMenuItem.Text = "&Sair";
             // 
-            // editarToolStripMenuItem
+            // criarToolStripMenuItem
             // 
-            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.criarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientesToolStripMenuItem,
             this.filmesToolStripMenuItem,
             this.alugueresToolStripMenuItem});
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.editarToolStripMenuItem.Text = "&Editar";
+            this.criarToolStripMenuItem.Name = "criarToolStripMenuItem";
+            this.criarToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.criarToolStripMenuItem.Text = "&Criar";
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.clientesToolStripMenuItem.Text = "&Clientes";
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientesToolStripMenuItem.Text = "C&lientes";
+            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // filmesToolStripMenuItem
             // 
             this.filmesToolStripMenuItem.Name = "filmesToolStripMenuItem";
-            this.filmesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.filmesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.filmesToolStripMenuItem.Text = "Filme&s";
             // 
             // alugueresToolStripMenuItem
             // 
             this.alugueresToolStripMenuItem.Name = "alugueresToolStripMenuItem";
-            this.alugueresToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.alugueresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.alugueresToolStripMenuItem.Text = "&Alugueres";
             // 
             // lblFilmes
@@ -125,6 +131,34 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // editarToolStripMenuItem
+            // 
+            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clientesToolStripMenuItem1,
+            this.filmesToolStripMenuItem1,
+            this.alugueresToolStripMenuItem1});
+            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.editarToolStripMenuItem.Text = "&Editar";
+            // 
+            // clientesToolStripMenuItem1
+            // 
+            this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.clientesToolStripMenuItem1.Text = "Clientes";
+            // 
+            // filmesToolStripMenuItem1
+            // 
+            this.filmesToolStripMenuItem1.Name = "filmesToolStripMenuItem1";
+            this.filmesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.filmesToolStripMenuItem1.Text = "Filmes";
+            // 
+            // alugueresToolStripMenuItem1
+            // 
+            this.alugueresToolStripMenuItem1.Name = "alugueresToolStripMenuItem1";
+            this.alugueresToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.alugueresToolStripMenuItem1.Text = "Alugueres";
+            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,12 +187,16 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ficheiroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem criarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem filmesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alugueresToolStripMenuItem;
         private System.Windows.Forms.Label lblFilmes;
         private System.Windows.Forms.DataGridView dgvFilmes;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem filmesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem alugueresToolStripMenuItem1;
     }
 }

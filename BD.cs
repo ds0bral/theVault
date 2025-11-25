@@ -74,10 +74,13 @@ namespace theVault
             // TABELA LIVROS
             SQL = @"CREATE TABLE CLIENTES(
                         IDCLIENTE INT IDENTITY(1,1) PRIMARY KEY,  
-                        NOME NVARCHAR(100) NOT NULL,      
+                        NOME NVARCHAR(100) NOT NULL,   
+                        DATANASCIMENTO DATE NOT NULL,
                         EMAIL VARCHAR(100) UNIQUE,                 
                         TELEFONE VARCHAR(15),
                         MORADA NVARCHAR(200),
+                        CP CHAR(8),
+                        FOTO VARCHAR(500),
                         REGISTRO DATETIME DEFAULT GETDATE(),   
                         ESTADO BIT DEFAULT 1,
                         );

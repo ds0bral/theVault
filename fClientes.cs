@@ -12,9 +12,13 @@ namespace theVault
 {
     public partial class fClientes : Form
     {
-        public fClientes()
+        string foto = "";
+        BD bd;
+
+        public fClientes(BD bd)
         {
             InitializeComponent();
+            this.bd = bd;
         }
     }
 }

@@ -12,9 +12,17 @@ namespace theVault
 {
     public partial class fMain : Form
     {
+        BD bd;
         public fMain()
         {
             InitializeComponent();
+            bd = new BD("theVault");
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fClientes f = new fClientes(bd);
+            f.Show();
         }
     }
 }
