@@ -106,10 +106,6 @@ namespace theVault
             comando = new SqlCommand(SQL,linkSQL);
             comando.ExecuteNonQuery();
             comando.Dispose();
-
-
-
-
         }
 
         // Função para executar comando SQL (insert/delete/update/create/alter...)
