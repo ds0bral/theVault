@@ -73,13 +73,17 @@ namespace theVault
             // Criar as tabelas
             // TABELA LIVROS
             SQL = @"CREATE TABLE CLIENTES(
-                        IDCLIENTE INT IDENTITY(1,1) PRIMARY KEY,  
-                        NOME NVARCHAR(100) NOT NULL,   
+                        IDCLIENTE INT IDENTITY(1,1) PRIMARY KEY,
+                        NOME NVARCHAR(100) NOT NULL
+                            CHECK (LEN(NOME) >= 3),
                         DATANASCIMENTO DATE NOT NULL,
-                        EMAIL VARCHAR(100) UNIQUE,                 
-                        TELEFONE VARCHAR(15),
+                        EMAIL VARCHAR(100) UNIQUE
+                            CHECK (EMAIL LIKE '%@%.%'),
+                        TELEFONE VARCHAR(9)
+                            CHECK (TELEMOVEL LIKE '9[1236][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
                         MORADA NVARCHAR(200),
-                        CP CHAR(8),
+                        CP CHAR(8)
+                            CHECK (CP LIKE '[1-9][0-9][0-9][0-9]-[0-9][0-9][0-9]'),
                         FOTO VARCHAR(500),
                         REGISTRO DATETIME DEFAULT GETDATE(),   
                         ESTADO BIT DEFAULT 1,

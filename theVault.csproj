@@ -186,7 +186,9 @@
   <ItemGroup>
     <Compile Include="BD.cs" />
     <Compile Include="Cliente.cs" />
-    <Compile Include="fAlugueres.cs" />
+    <Compile Include="fAlugueres.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="fAlugueres.Designer.cs">
       <DependentUpon>fAlugueres.cs</DependentUpon>
     </Compile>
@@ -196,7 +198,9 @@
     <Compile Include="fClientes.Designer.cs">
       <DependentUpon>fClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="fFilmes.cs" />
+    <Compile Include="fFilmes.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="fFilmes.Designer.cs">
       <DependentUpon>fFilmes.cs</DependentUpon>
     </Compile>

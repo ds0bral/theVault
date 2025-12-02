@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace theVault
@@ -75,27 +76,146 @@ namespace theVault
             };
             bd.executeSQL(SQL, parametros);
         }
-
         public void Atualizar()
         {
-            throw new NotImplementedException();
+            string SQL = @"UPDATE CLIENTES
+                           SET NOME = @NOME,
+                               DATANASCIMENTO = @DATANASCIMENTO,
+                               EMAIL = @EMAIL,
+                               TELEFONE = @TELEFONE,
+                               MORADA = @MORADA,
+                               CP = @CP,
+                               FOTO = @FOTO
+                           WHERE IDCLIENTE = @IDCLIENTE";
+            List<SqlParameter> parametros = new List<SqlParameter>()
+            {
+                new SqlParameter()
+                {
+                    ParameterName = "@NOME",
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                    Value = this.nome,
+                },
+                new SqlParameter()
+                {
+                    ParameterName = "@DATANASCIMENTO",
+                    SqlDbType = System.Data.SqlDbType.Date,
+                    Value = this.dataNascimento,
+                },
+                new SqlParameter()
+                {
+                    ParameterName = "@EMAIL",
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                    Value = this.email,
+                },
+                new SqlParameter()
+                {
+                    ParameterName = "@TELEFONE",
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                    Value = this.telefone,
+                },
+                new SqlParameter()
+                {
+                    ParameterName = "@MORADA",
+                    SqlDbType = System.Data.SqlDbType.NVarChar,
+                    Value = this.morada,
+                },
+                new SqlParameter()
+                {
+                    ParameterName = "@CP",
+                    SqlDbType = System.Data.SqlDbType.Char,
+                    Value = this.cp,
+                },
+                new SqlParameter()
+                {
+                    ParameterName = "@FOTO",
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                    Value = this.foto,
+                }
+            };
+            bd.executeSQL(SQL, parametros);
         }
         public void Apagar()
         {
-            throw new NotImplementedException();
+            string SQL = "DELETE FROM CLIENTES WHERE IDCLIENTE = @IDCLIENTE" + idCliente;
+            bd.executeSQL(SQL);
         }
         public List<string> Validar()
         {
-            List<string> erros = new List<string>();
-            if (string.IsNullOrEmpty(nome))
+            List<string> error = new List<string>();
+
+            // 1. Validar Nome
+            if (string.IsNullOrEmpty(nome) || nome.Length < 3)
             {
-                erros.Add("O nome do cliente é obrigatório.");
+                error.Add("O campo nome é obrigatório e deve ter pelo menos 3 caracteres.");
             }
+            else if (nome.Length > 100)
+            {
+                error.Add("O nome não pode exceder os 100 caracteres.");
+            }
+
+            // 2. Validar Data de Nascimento
+            if (dataNascimento > DateTime.Now)
+            {
+                error.Add("A data de nascimento não pode ser superior à data atual.");
+            }
+
+            // 3. Validar Email
             if (string.IsNullOrEmpty(email))
             {
-                erros.Add("O email do cliente é obrigatório.");
+                error.Add("O campo email é obrigatório.");
             }
-            return erros;
+            else if (email.Length > 100)
+            {
+                error.Add("O email não pode exceder 100 caracteres.");
+            }
+            else if (!email.Contains("@") || !email.Contains("."))
+            {
+                error.Add("O email deve conter '@' e um ponto '.' (ex: nome@exemplo.com).");
+            }
+
+            // 4. Validar Telefone
+            if (!string.IsNullOrEmpty(telefone))
+            {
+                // Regras do Regex:
+                // ^9      -> Tem de começar por 9
+                // [1236]  -> O segundo número só pode ser 1, 2, 3 ou 6
+                // \d{7}   -> Seguido de exatamente 7 outros números (0-9)
+                // $       -> Fim da string (garante que não tem mais nada)
+
+                if (!Regex.IsMatch(telefone, @"^9[1236]\d{7}$"))
+                {
+                    error.Add("O telefone deve ter 9 dígitos e começar por 91, 92, 93 ou 96.");
+                }
+            }
+
+            // 5. Validar Morada
+            if (!string.IsNullOrEmpty(morada) && morada.Length > 200)
+            {
+                error.Add("A morada não pode exceder os 200 caracteres.");
+            }
+
+            // 6. Validar Código Postal
+            if (!string.IsNullOrEmpty(cp))
+            {
+                // Regras do Regex:
+                // ^[1-9]  -> O primeiro dígito é de 1 a 9 (não pode ser 0)
+                // \d{3}   -> Seguido de 3 dígitos quaisquer
+                // -       -> Um hífen obrigatório
+                // \d{3}   -> Seguido de 3 dígitos finais
+
+                if (!Regex.IsMatch(cp, @"^[1-9]\d{3}-\d{3}$"))
+                {
+                    error.Add("O Código Postal deve estar no formato XXXX-XXX e não pode começar por 0.");
+                }
+            }
+
+            // 7. Validar Foto (para não estourar a aplicação)
+            if (!string.IsNullOrEmpty(foto) && foto.Length > 500)
+            {
+                error.Add("O caminho da foto é demasiado longo.");
+            }
+
+            return error;
         }
     }
 }
