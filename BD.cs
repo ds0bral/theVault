@@ -79,14 +79,14 @@ namespace theVault
                         DATANASCIMENTO DATE NOT NULL,
                         EMAIL VARCHAR(100) UNIQUE
                             CHECK (EMAIL LIKE '%@%.%'),
-                        TELEFONE VARCHAR(9)
-                            CHECK (TELEMOVEL LIKE '9[1236][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+                        TELEFONE VARCHAR(9) NOT NULL
+                            CHECK (TELEFONE LIKE '9[1236][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
                         MORADA NVARCHAR(200),
                         CP CHAR(8)
-                            CHECK (CP LIKE '[1-9][0-9][0-9][0-9]-[0-9][0-9][0-9]'),
+                            CHECK (CP IS NULL OR CP = '' OR CP LIKE '[1-9][0-9][0-9][0-9]-[0-9][0-9][0-9]'),
                         FOTO VARCHAR(500),
                         REGISTRO DATETIME DEFAULT GETDATE(),   
-                        ESTADO BIT DEFAULT 1,
+                        ESTADO BIT DEFAULT 1
                         );
                     CREATE TABLE FILMES(
                         IDFILME INT IDENTITY(1,1) PRIMARY KEY,
@@ -108,7 +108,7 @@ namespace theVault
                         DATA DATETIME DEFAULT GETDATE(),
                         DATAPREVISTA DATE NOT NULL,
                         DATAREAL DATETIME NULL,         
-                        PAGO DECIMAL(5,2) NULL,
+                        PAGO DECIMAL(5,2) NULL
                         );";
             comando = new SqlCommand(SQL,linkSQL);
             comando.ExecuteNonQuery();

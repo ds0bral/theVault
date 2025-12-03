@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -170,12 +171,14 @@ namespace theVault
             }
             else if (!email.Contains("@") || !email.Contains("."))
             {
-                error.Add("O email deve conter '@' e um ponto '.' (ex: nome@exemplo.com).");
+                error.Add("Deve inserir um email válido. (ex: nome@exemplo.com)");
             }
 
             // 4. Validar Telefone
-            if (!string.IsNullOrEmpty(telefone))
+            if (string.IsNullOrEmpty(telefone))
             {
+                error.Add("O campo telefone é obrigatório.");
+
                 // Regras do Regex:
                 // ^9      -> Tem de começar por 9
                 // [1236]  -> O segundo número só pode ser 1, 2, 3 ou 6
@@ -184,7 +187,7 @@ namespace theVault
 
                 if (!Regex.IsMatch(telefone, @"^9[1236]\d{7}$"))
                 {
-                    error.Add("O telefone deve ter 9 dígitos e começar por 91, 92, 93 ou 96.");
+                    error.Add("Deve inserir um número de telefone válido.");
                 }
             }
 
@@ -205,7 +208,7 @@ namespace theVault
 
                 if (!Regex.IsMatch(cp, @"^[1-9]\d{3}-\d{3}$"))
                 {
-                    error.Add("O Código Postal deve estar no formato XXXX-XXX e não pode começar por 0.");
+                    error.Add("O código postal deve estar no formato XXXX-XXX e não pode começar por 0.");
                 }
             }
 
@@ -216,6 +219,44 @@ namespace theVault
             }
 
             return error;
+        }
+        public DataTable Listar()
+        {
+            return bd.returnSQL("SELECT IDCLIENTE AS [ID], NOME AS [Nome], DATEDIFF(YEAR,DATANASCIMENTO,GETDATE()) AS [Idade], EMAIL AS [Email], TELEFONE AS [Telefone] FROM CLIENTES");
+        }
+        public void Procurar()
+        {
+            string SQL = "SELECT * FROM CLIENTES WHERE IDCLIENTE = " + idCliente;
+            DataTable temp = bd.returnSQL(SQL);
+            if (temp != null && temp.Rows.Count > 0)
+            {
+                DataRow linha = temp.Rows[0];
+                this.nome = linha["NOME"].ToString();
+                this.dataNascimento = DateTime.Parse(linha["DATANASCIMENTO"].ToString());
+                this.email = linha["EMAIL"].ToString();
+                this.telefone = linha["TELEFONE"].ToString();
+                this.morada = linha["MORADA"].ToString();
+                this.cp = (linha["CP"].ToString());
+                this.foto = linha["FOTO"].ToString();
+            }
+        }
+        public DataTable Procurar(string v, string text)
+        {
+            string SQL = "SELECT IDCLIENTE AS [ID], NOME AS [Nome], Idade AS DATEDIFF(YEAR,DATANASCIMENTO,GETDATE()), EMAIL AS [Email], TELEFONE AS [Telefone] FROM CLIENTES WHERE " + v + " LIKE @PESQUISA";
+            List<SqlParameter> parametros = new List<SqlParameter>()
+            {
+                new SqlParameter()
+                {
+                    ParameterName = "@PESQUISA",
+                    SqlDbType = System.Data.SqlDbType.VarChar,
+                    Value = "%" + text + "%"
+                }
+            };
+            return bd.returnSQL(SQL, parametros);
+        }
+        public override string ToString()
+        {
+            return this.nome;
         }
     }
 }
