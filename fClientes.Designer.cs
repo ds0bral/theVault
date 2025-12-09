@@ -52,6 +52,12 @@
             this.lblNascimento = new System.Windows.Forms.Label();
             this.dgvClientes = new System.Windows.Forms.DataGridView();
             this.lblErro = new System.Windows.Forms.Label();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.txtProcurar = new System.Windows.Forms.TextBox();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +65,7 @@
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(84, 91);
+            this.lblNome.Location = new System.Drawing.Point(84, 101);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(38, 13);
             this.lblNome.TabIndex = 0;
@@ -68,7 +74,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(85, 147);
+            this.lblEmail.Location = new System.Drawing.Point(85, 157);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(35, 13);
             this.lblEmail.TabIndex = 1;
@@ -77,7 +83,7 @@
             // lblTelefone
             // 
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(84, 173);
+            this.lblTelefone.Location = new System.Drawing.Point(84, 183);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(52, 13);
             this.lblTelefone.TabIndex = 2;
@@ -86,7 +92,7 @@
             // lblMorada
             // 
             this.lblMorada.AutoSize = true;
-            this.lblMorada.Location = new System.Drawing.Point(85, 200);
+            this.lblMorada.Location = new System.Drawing.Point(85, 210);
             this.lblMorada.Name = "lblMorada";
             this.lblMorada.Size = new System.Drawing.Size(46, 13);
             this.lblMorada.TabIndex = 3;
@@ -95,7 +101,7 @@
             // lblCP
             // 
             this.lblCP.AutoSize = true;
-            this.lblCP.Location = new System.Drawing.Point(85, 227);
+            this.lblCP.Location = new System.Drawing.Point(85, 237);
             this.lblCP.Name = "lblCP";
             this.lblCP.Size = new System.Drawing.Size(75, 13);
             this.lblCP.TabIndex = 4;
@@ -103,7 +109,7 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(128, 88);
+            this.txtNome.Location = new System.Drawing.Point(128, 98);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(144, 20);
             this.txtNome.TabIndex = 5;
@@ -111,7 +117,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(126, 144);
+            this.txtEmail.Location = new System.Drawing.Point(126, 154);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(147, 20);
             this.txtEmail.TabIndex = 6;
@@ -119,7 +125,7 @@
             // 
             // txtTelefone
             // 
-            this.txtTelefone.Location = new System.Drawing.Point(142, 170);
+            this.txtTelefone.Location = new System.Drawing.Point(142, 180);
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(131, 20);
             this.txtTelefone.TabIndex = 7;
@@ -127,7 +133,7 @@
             // 
             // txtMorada
             // 
-            this.txtMorada.Location = new System.Drawing.Point(137, 196);
+            this.txtMorada.Location = new System.Drawing.Point(137, 206);
             this.txtMorada.Name = "txtMorada";
             this.txtMorada.Size = new System.Drawing.Size(136, 20);
             this.txtMorada.TabIndex = 8;
@@ -135,7 +141,7 @@
             // 
             // txtCP
             // 
-            this.txtCP.Location = new System.Drawing.Point(170, 224);
+            this.txtCP.Location = new System.Drawing.Point(170, 234);
             this.txtCP.Name = "txtCP";
             this.txtCP.Size = new System.Drawing.Size(103, 20);
             this.txtCP.TabIndex = 9;
@@ -143,7 +149,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(115, 277);
+            this.btnSave.Location = new System.Drawing.Point(115, 287);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(119, 37);
             this.btnSave.TabIndex = 11;
@@ -153,18 +159,19 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(263, 277);
+            this.btnCancel.Location = new System.Drawing.Point(263, 287);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(119, 37);
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lblClientes
             // 
             this.lblClientes.AutoSize = true;
             this.lblClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientes.Location = new System.Drawing.Point(442, 26);
+            this.lblClientes.Location = new System.Drawing.Point(563, 26);
             this.lblClientes.Name = "lblClientes";
             this.lblClientes.Size = new System.Drawing.Size(99, 26);
             this.lblClientes.TabIndex = 13;
@@ -174,7 +181,7 @@
             // lblFeedback
             // 
             this.lblFeedback.AutoSize = true;
-            this.lblFeedback.Location = new System.Drawing.Point(172, 323);
+            this.lblFeedback.Location = new System.Drawing.Point(172, 333);
             this.lblFeedback.Name = "lblFeedback";
             this.lblFeedback.Size = new System.Drawing.Size(0, 13);
             this.lblFeedback.TabIndex = 14;
@@ -182,7 +189,7 @@
             // lblFoto
             // 
             this.lblFoto.AutoSize = true;
-            this.lblFoto.Location = new System.Drawing.Point(352, 72);
+            this.lblFoto.Location = new System.Drawing.Point(352, 82);
             this.lblFoto.Name = "lblFoto";
             this.lblFoto.Size = new System.Drawing.Size(31, 13);
             this.lblFoto.TabIndex = 15;
@@ -190,7 +197,7 @@
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(329, 220);
+            this.btnFind.Location = new System.Drawing.Point(329, 230);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(75, 23);
             this.btnFind.TabIndex = 16;
@@ -202,7 +209,7 @@
             // 
             this.picFoto.Image = ((System.Drawing.Image)(resources.GetObject("picFoto.Image")));
             this.picFoto.InitialImage = null;
-            this.picFoto.Location = new System.Drawing.Point(317, 88);
+            this.picFoto.Location = new System.Drawing.Point(317, 98);
             this.picFoto.Name = "picFoto";
             this.picFoto.Size = new System.Drawing.Size(100, 126);
             this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -212,7 +219,7 @@
             // 
             // dtpNascimento
             // 
-            this.dtpNascimento.Location = new System.Drawing.Point(128, 118);
+            this.dtpNascimento.Location = new System.Drawing.Point(128, 128);
             this.dtpNascimento.Name = "dtpNascimento";
             this.dtpNascimento.Size = new System.Drawing.Size(144, 20);
             this.dtpNascimento.TabIndex = 17;
@@ -220,7 +227,7 @@
             // lblNascimento
             // 
             this.lblNascimento.AutoSize = true;
-            this.lblNascimento.Location = new System.Drawing.Point(16, 120);
+            this.lblNascimento.Location = new System.Drawing.Point(16, 130);
             this.lblNascimento.Name = "lblNascimento";
             this.lblNascimento.Size = new System.Drawing.Size(107, 13);
             this.lblNascimento.TabIndex = 18;
@@ -229,24 +236,84 @@
             // dgvClientes
             // 
             this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClientes.Location = new System.Drawing.Point(496, 88);
+            this.dgvClientes.Location = new System.Drawing.Point(496, 118);
             this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.Size = new System.Drawing.Size(547, 276);
+            this.dgvClientes.Size = new System.Drawing.Size(547, 246);
             this.dgvClientes.TabIndex = 19;
+            this.dgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellClick);
             // 
             // lblErro
             // 
             this.lblErro.AutoSize = true;
-            this.lblErro.Location = new System.Drawing.Point(19, 371);
+            this.lblErro.Location = new System.Drawing.Point(19, 374);
             this.lblErro.Name = "lblErro";
             this.lblErro.Size = new System.Drawing.Size(0, 13);
             this.lblErro.TabIndex = 20;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(1074, 103);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(122, 65);
+            this.btnEdit.TabIndex = 21;
+            this.btnEdit.Text = "Editar";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(1075, 194);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(122, 65);
+            this.btnEliminar.TabIndex = 22;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(1074, 284);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(122, 65);
+            this.btnPrint.TabIndex = 23;
+            this.btnPrint.Text = "Imprimir";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // txtProcurar
+            // 
+            this.txtProcurar.Location = new System.Drawing.Point(496, 88);
+            this.txtProcurar.Name = "txtProcurar";
+            this.txtProcurar.Size = new System.Drawing.Size(547, 20);
+            this.txtProcurar.TabIndex = 24;
+            this.txtProcurar.Text = "Procurar";
+            this.txtProcurar.Click += new System.EventHandler(this.txtProcurar_Click);
+            this.txtProcurar.TextChanged += new System.EventHandler(this.txtProcurar_TextChanged);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // fClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1055, 402);
+            this.ClientSize = new System.Drawing.Size(1224, 402);
+            this.Controls.Add(this.txtProcurar);
+            this.Controls.Add(this.btnPrint);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblErro);
             this.Controls.Add(this.dgvClientes);
             this.Controls.Add(this.lblNascimento);
@@ -303,5 +370,11 @@
         private System.Windows.Forms.Label lblNascimento;
         private System.Windows.Forms.DataGridView dgvClientes;
         private System.Windows.Forms.Label lblErro;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.TextBox txtProcurar;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

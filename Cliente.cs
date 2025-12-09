@@ -131,6 +131,12 @@ namespace theVault
                     ParameterName = "@FOTO",
                     SqlDbType = System.Data.SqlDbType.VarChar,
                     Value = this.foto,
+                },
+                new SqlParameter()
+                {
+                    ParameterName = "@IDCLIENTE",
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Value = this.idCliente,
                 }
             };
             bd.executeSQL(SQL, parametros);
@@ -242,7 +248,7 @@ namespace theVault
         }
         public DataTable Procurar(string v, string text)
         {
-            string SQL = "SELECT IDCLIENTE AS [ID], NOME AS [Nome], Idade AS DATEDIFF(YEAR,DATANASCIMENTO,GETDATE()), EMAIL AS [Email], TELEFONE AS [Telefone] FROM CLIENTES WHERE " + v + " LIKE @PESQUISA";
+            string SQL = "SELECT IDCLIENTE AS [ID], NOME AS [Nome], DATEDIFF(YEAR,DATANASCIMENTO,GETDATE()) AS [Idade], EMAIL AS [Email], TELEFONE AS [Telefone] FROM CLIENTES WHERE " + v + " LIKE @PESQUISA";
             List<SqlParameter> parametros = new List<SqlParameter>()
             {
                 new SqlParameter()
