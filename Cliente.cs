@@ -25,7 +25,6 @@ namespace theVault
         {
             this.bd = bd;
         }
-
         public void Adicionar()
         {
             string SQL = @"INSERT INTO CLIENTES(NOME,DATANASCIMENTO,EMAIL,TELEFONE,MORADA,CP,FOTO)
@@ -88,6 +87,7 @@ namespace theVault
                                CP = @CP,
                                FOTO = @FOTO
                            WHERE IDCLIENTE = @IDCLIENTE";
+
             List<SqlParameter> parametros = new List<SqlParameter>()
             {
                 new SqlParameter()
@@ -143,7 +143,7 @@ namespace theVault
         }
         public void Apagar()
         {
-            string SQL = "DELETE FROM CLIENTES WHERE IDCLIENTE = @IDCLIENTE" + idCliente;
+            string SQL = "DELETE FROM CLIENTES WHERE IDCLIENTE = " + idCliente;
             bd.executeSQL(SQL);
         }
         public List<string> Validar()

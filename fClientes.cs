@@ -96,11 +96,12 @@ namespace theVault
             txtMorada.Text = "";
             txtCP.Text = "";
             dtpNascimento.Value = DateTime.Now;
-            picFoto.Image = null;
+            picFoto.Image = (Image)picFoto.Tag;
         }
         private void fClientes_Load(object sender, EventArgs e)
         {
             ListarClientes();
+            picFoto.Tag = picFoto.Image;
         }
         private void EliminarCliente()
         {
@@ -167,6 +168,7 @@ namespace theVault
             Cliente cliente = new Cliente(bd);
 
             // Preencher os dados
+            cliente.idCliente = clienteEscolhido;
             cliente.nome = txtNome.Text;
             cliente.dataNascimento = dtpNascimento.Value;
             cliente.email = txtEmail.Text;
@@ -231,6 +233,12 @@ namespace theVault
         {
             printDocument1.DefaultPageSettings.Landscape = true;
             printPreviewDialog1.ShowDialog();
+        }
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            fMain f = new fMain();
+            f.Show();
         }
     }
 }

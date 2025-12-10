@@ -21,9 +21,13 @@ namespace theVault
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
             fClientes f = new fClientes(bd);
-            f.Show();
+            f.ShowDialog();
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
