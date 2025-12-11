@@ -1,0 +1,4 @@
+﻿No fFilmes fazer um groupby por género (Ação, Comédia, Drama, Terror, Sci-Fi).
+
+// No construtor ou no Load do fFilmes
+comboBoxGenero.DataSource = Enum.GetValues(typeof(Genero));

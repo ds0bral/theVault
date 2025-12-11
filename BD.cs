@@ -91,13 +91,18 @@ namespace theVault
                     CREATE TABLE FILMES(
                         IDFILME INT IDENTITY(1,1) PRIMARY KEY,
                         TITULO NVARCHAR(150) NOT NULL,
-                        GENERO NVARCHAR(50),                       
-                        ANO INT,
+                        GENERO NVARCHAR(8)
+                            CHECK (GENERO IN ('Ação', 'Comédia', 'Drama', 'Terror', 'Sci-Fi')),
+                        ANO INT
+                            CHECK (ANO >= 1890),
                         DIRETOR NVARCHAR(100),
-                        DURACAO INT,                           
-                        PRECO DECIMAL(5,2),                
+                        DURACAO INT
+                            CHECK (DURACAO > 0),
+                        PRECO DECIMAL(5,2)
+                            CHECK (PRECO >= 0),
                         STOCK INT DEFAULT 0
-                            CHECK (STOCK >= 0)
+                            CHECK (STOCK >= 0),
+                        CONSTRAINT UNIQUE(TITULO, ANO),
                         );
                     CREATE TABLE ALUGUER(
                         IDALUGUER INT IDENTITY(1,1) PRIMARY KEY,

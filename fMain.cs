@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using theVault.Cliente;
+using theVault.Alugueres;
+using theVault.Filmes;
 
 namespace theVault
 {
@@ -18,13 +21,24 @@ namespace theVault
             InitializeComponent();
             bd = new BD("theVault");
         }
-
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fClientes f = new fClientes(bd);
+            this.Hide();
+            fClientes f = new fClientes(bd, this);
             f.ShowDialog();
         }
-
+        private void filmesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            fFilmes f = new fFilmes(bd, this);
+            f.ShowDialog();
+        }
+        private void alugueresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            fAlugueres f = new fAlugueres(bd, this);
+            f.ShowDialog();
+        }
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();

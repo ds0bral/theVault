@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 namespace theVault
 {
     /// <summary>
@@ -24,6 +24,11 @@ namespace theVault
             if (System.IO.Directory.Exists(pastaInicial) == false)
                 System.IO.Directory.CreateDirectory(pastaInicial);
             return pastaInicial;
+        }
+        public static void closeForm(Form f,fMain main) 
+        {
+            f.Close();
+            main.Show();
         }
     }
 }

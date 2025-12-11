@@ -66,7 +66,7 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.sairToolStripMenuItem.Text = "&Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -92,12 +92,14 @@
             this.filmesToolStripMenuItem.Name = "filmesToolStripMenuItem";
             this.filmesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.filmesToolStripMenuItem.Text = "&Filmes";
+            this.filmesToolStripMenuItem.Click += new System.EventHandler(this.filmesToolStripMenuItem_Click);
             // 
             // alugueresToolStripMenuItem
             // 
             this.alugueresToolStripMenuItem.Name = "alugueresToolStripMenuItem";
             this.alugueresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.alugueresToolStripMenuItem.Text = "&Alugueres";
+            this.alugueresToolStripMenuItem.Click += new System.EventHandler(this.alugueresToolStripMenuItem_Click);
             // 
             // lblFilmes
             // 
