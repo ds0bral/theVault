@@ -88,6 +88,7 @@ namespace theVault
                         REGISTRO DATETIME DEFAULT GETDATE(),   
                         ESTADO BIT DEFAULT 1
                         );
+
                     CREATE TABLE FILMES(
                         IDFILME INT IDENTITY(1,1) PRIMARY KEY,
                         TITULO NVARCHAR(150) NOT NULL,
@@ -102,8 +103,10 @@ namespace theVault
                             CHECK (PRECO >= 0),
                         STOCK INT DEFAULT 0
                             CHECK (STOCK >= 0),
-                        CONSTRAINT UNIQUE(TITULO, ANO),
+                        CAPA VARCHAR(500),
+                        CONSTRAINT DADOSUNICOS UNIQUE(TITULO, ANO),
                         );
+
                     CREATE TABLE ALUGUER(
                         IDALUGUER INT IDENTITY(1,1) PRIMARY KEY,
                         IDCLIENTE INT NOT NULL
@@ -114,7 +117,11 @@ namespace theVault
                         DATAPREVISTA DATE NOT NULL,
                         DATAREAL DATETIME NULL,         
                         PAGO DECIMAL(5,2) NULL
+                            CHECK (PAGO IS NULL OR PAGO >= 0),
+                        CONSTRAINT CKREAL CHECK (DATAREAL IS NULL OR DATAREAL >= DATA),
+                        CONSTRAINT CKPREVISTA CHECK (DATAPREVISTA >= CAST(DATA AS DATE)),
                         );";
+
             comando = new SqlCommand(SQL,linkSQL);
             comando.ExecuteNonQuery();
             comando.Dispose();

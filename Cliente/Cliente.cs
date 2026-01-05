@@ -21,6 +21,7 @@ namespace theVault.Cliente
         public string foto { get; set; }
 
         BD bd { get; set; }
+
         public Cliente(BD bd)
         {
             this.bd = bd;

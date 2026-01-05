@@ -66,7 +66,7 @@
             // lblNome
             // 
             this.lblNome.AutoSize = true;
-            this.lblNome.Location = new System.Drawing.Point(84, 106);
+            this.lblNome.Location = new System.Drawing.Point(42, 128);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(38, 13);
             this.lblNome.TabIndex = 0;
@@ -75,7 +75,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(85, 162);
+            this.lblEmail.Location = new System.Drawing.Point(40, 181);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(35, 13);
             this.lblEmail.TabIndex = 1;
@@ -84,7 +84,7 @@
             // lblTelefone
             // 
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(84, 188);
+            this.lblTelefone.Location = new System.Drawing.Point(39, 207);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(52, 13);
             this.lblTelefone.TabIndex = 2;
@@ -93,7 +93,7 @@
             // lblMorada
             // 
             this.lblMorada.AutoSize = true;
-            this.lblMorada.Location = new System.Drawing.Point(85, 215);
+            this.lblMorada.Location = new System.Drawing.Point(40, 234);
             this.lblMorada.Name = "lblMorada";
             this.lblMorada.Size = new System.Drawing.Size(46, 13);
             this.lblMorada.TabIndex = 3;
@@ -102,7 +102,7 @@
             // lblCP
             // 
             this.lblCP.AutoSize = true;
-            this.lblCP.Location = new System.Drawing.Point(85, 242);
+            this.lblCP.Location = new System.Drawing.Point(40, 261);
             this.lblCP.Name = "lblCP";
             this.lblCP.Size = new System.Drawing.Size(75, 13);
             this.lblCP.TabIndex = 4;
@@ -110,39 +110,39 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(128, 103);
+            this.txtNome.Location = new System.Drawing.Point(86, 125);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(144, 20);
+            this.txtNome.Size = new System.Drawing.Size(209, 20);
             this.txtNome.TabIndex = 5;
             this.toolTip1.SetToolTip(this.txtNome, "Introduza um nome");
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(126, 159);
+            this.txtEmail.Location = new System.Drawing.Point(86, 181);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(147, 20);
+            this.txtEmail.Size = new System.Drawing.Size(210, 20);
             this.txtEmail.TabIndex = 6;
             this.toolTip1.SetToolTip(this.txtEmail, "Introduza um email");
             // 
             // txtTelefone
             // 
-            this.txtTelefone.Location = new System.Drawing.Point(142, 185);
+            this.txtTelefone.Location = new System.Drawing.Point(102, 207);
             this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(131, 20);
+            this.txtTelefone.Size = new System.Drawing.Size(194, 20);
             this.txtTelefone.TabIndex = 7;
             this.toolTip1.SetToolTip(this.txtTelefone, "Introduza um telefone válido");
             // 
             // txtMorada
             // 
-            this.txtMorada.Location = new System.Drawing.Point(137, 211);
+            this.txtMorada.Location = new System.Drawing.Point(102, 233);
             this.txtMorada.Name = "txtMorada";
-            this.txtMorada.Size = new System.Drawing.Size(136, 20);
+            this.txtMorada.Size = new System.Drawing.Size(194, 20);
             this.txtMorada.TabIndex = 8;
             this.toolTip1.SetToolTip(this.txtMorada, "Introduza uma morada");
             // 
             // txtCP
             // 
-            this.txtCP.Location = new System.Drawing.Point(170, 239);
+            this.txtCP.Location = new System.Drawing.Point(126, 259);
             this.txtCP.Name = "txtCP";
             this.txtCP.Size = new System.Drawing.Size(103, 20);
             this.txtCP.TabIndex = 9;
@@ -150,7 +150,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(115, 292);
+            this.btnSave.Location = new System.Drawing.Point(115, 309);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(119, 37);
             this.btnSave.TabIndex = 11;
@@ -160,7 +160,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(263, 292);
+            this.btnCancel.Location = new System.Drawing.Point(263, 309);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(119, 37);
             this.btnCancel.TabIndex = 12;
@@ -172,7 +172,7 @@
             // 
             this.lblClientes.AutoSize = true;
             this.lblClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientes.Location = new System.Drawing.Point(557, 31);
+            this.lblClientes.Location = new System.Drawing.Point(451, 33);
             this.lblClientes.Name = "lblClientes";
             this.lblClientes.Size = new System.Drawing.Size(121, 31);
             this.lblClientes.TabIndex = 13;
@@ -190,7 +190,7 @@
             // lblFoto
             // 
             this.lblFoto.AutoSize = true;
-            this.lblFoto.Location = new System.Drawing.Point(352, 89);
+            this.lblFoto.Location = new System.Drawing.Point(370, 106);
             this.lblFoto.Name = "lblFoto";
             this.lblFoto.Size = new System.Drawing.Size(31, 13);
             this.lblFoto.TabIndex = 15;
@@ -198,7 +198,7 @@
             // 
             // btnFind
             // 
-            this.btnFind.Location = new System.Drawing.Point(329, 241);
+            this.btnFind.Location = new System.Drawing.Point(347, 258);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(75, 23);
             this.btnFind.TabIndex = 16;
@@ -210,7 +210,7 @@
             // 
             this.picFoto.Image = ((System.Drawing.Image)(resources.GetObject("picFoto.Image")));
             this.picFoto.InitialImage = null;
-            this.picFoto.Location = new System.Drawing.Point(317, 105);
+            this.picFoto.Location = new System.Drawing.Point(335, 122);
             this.picFoto.Name = "picFoto";
             this.picFoto.Size = new System.Drawing.Size(100, 131);
             this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -221,7 +221,7 @@
             // 
             // dtpNascimento
             // 
-            this.dtpNascimento.Location = new System.Drawing.Point(128, 133);
+            this.dtpNascimento.Location = new System.Drawing.Point(151, 155);
             this.dtpNascimento.Name = "dtpNascimento";
             this.dtpNascimento.Size = new System.Drawing.Size(144, 20);
             this.dtpNascimento.TabIndex = 17;
@@ -229,7 +229,7 @@
             // lblNascimento
             // 
             this.lblNascimento.AutoSize = true;
-            this.lblNascimento.Location = new System.Drawing.Point(16, 135);
+            this.lblNascimento.Location = new System.Drawing.Point(39, 155);
             this.lblNascimento.Name = "lblNascimento";
             this.lblNascimento.Size = new System.Drawing.Size(107, 13);
             this.lblNascimento.TabIndex = 18;
@@ -254,7 +254,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(112, 292);
+            this.btnEdit.Location = new System.Drawing.Point(112, 309);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(122, 37);
             this.btnEdit.TabIndex = 21;
