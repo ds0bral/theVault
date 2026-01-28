@@ -10,14 +10,13 @@ namespace theVault.Alugueres
 {
     internal class Alugueres : Item
     {
-        // Propriedades da tabela ALUGUER
         public int idAluguer { get; set; }
         public int idCliente { get; set; }
         public int idFilme { get; set; }
-        public DateTime data { get; set; }          // Data do registo (automática na BD)
-        public DateTime dataPrevista { get; set; }  // Data limite para entrega
-        public DateTime? dataReal { get; set; }     // Data real da entrega (pode ser null)
-        public decimal? pago { get; set; }          // Valor pago (pode ser null)
+        public DateTime data { get; set; }          
+        public DateTime dataPrevista { get; set; }  
+        public DateTime dataReal { get; set; }     
+        public decimal pago { get; set; }          
 
         BD bd;
 
@@ -26,10 +25,8 @@ namespace theVault.Alugueres
             this.bd = bd;
         }
 
-        // Implementação do método da Interface Item
         public void Adicionar()
         {
-            // Adiciona o aluguer E desconta 1 ao stock do filme
             string SQL = @"INSERT INTO ALUGUER(IDCLIENTE, IDFILME, DATAPREVISTA)
                            VALUES (@IDCLIENTE, @IDFILME, @DATAPREVISTA);
                            
@@ -37,18 +34,28 @@ namespace theVault.Alugueres
 
             List<SqlParameter> parametros = new List<SqlParameter>()
             {
-                new SqlParameter { ParameterName = "@IDCLIENTE", SqlDbType = SqlDbType.Int, Value = this.idCliente },
-                new SqlParameter { ParameterName = "@IDFILME", SqlDbType = SqlDbType.Int, Value = this.idFilme },
-                new SqlParameter { ParameterName = "@DATAPREVISTA", SqlDbType = SqlDbType.Date, Value = this.dataPrevista }
+                new SqlParameter 
+                { ParameterName = "@IDCLIENTE", 
+                    SqlDbType = System.Data.SqlDbType.Int, 
+                    Value = this.idCliente 
+                },
+                new SqlParameter 
+                { ParameterName = "@IDFILME",
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Value = this.idFilme 
+                },
+                new SqlParameter 
+                { ParameterName = "@DATAPREVISTA", 
+                    SqlDbType = System.Data.SqlDbType.Date, 
+                    Value = this.dataPrevista 
+                }
             };
 
             bd.executeSQL(SQL, parametros);
         }
 
-        // Implementação do método da Interface Item
         public void Atualizar()
         {
-            // Regista a devolução (DataReal e Pago) E repõe 1 ao stock do filme
             string SQL = @"UPDATE ALUGUER
                            SET DATAREAL = @DATAREAL,
                                PAGO = @PAGO
@@ -58,24 +65,41 @@ namespace theVault.Alugueres
 
             List<SqlParameter> parametros = new List<SqlParameter>()
             {
-                new SqlParameter { ParameterName = "@DATAREAL", SqlDbType = SqlDbType.DateTime, Value = (object)this.dataReal ?? DBNull.Value },
-                new SqlParameter { ParameterName = "@PAGO", SqlDbType = SqlDbType.Decimal, Value = (object)this.pago ?? DBNull.Value },
-                new SqlParameter { ParameterName = "@IDALUGUER", SqlDbType = SqlDbType.Int, Value = this.idAluguer },
-                new SqlParameter { ParameterName = "@IDFILME", SqlDbType = SqlDbType.Int, Value = this.idFilme }
+                new SqlParameter 
+                { 
+                    ParameterName = "@DATAREAL", 
+                    SqlDbType = System.Data.SqlDbType.DateTime, 
+                    Value = (object)this.dataReal ?? DBNull.Value 
+                },
+                new SqlParameter 
+                { 
+                    ParameterName = "@PAGO", 
+                    SqlDbType = System.Data.SqlDbType.Decimal, 
+                    Value = (object)this.pago ?? DBNull.Value 
+                },
+                new SqlParameter 
+                { 
+                    ParameterName = "@IDALUGUER", 
+                    SqlDbType = System.Data.SqlDbType.Int, 
+                    Value = this.idAluguer 
+                },
+                new SqlParameter 
+                { 
+                    ParameterName = "@IDFILME", 
+                    SqlDbType = System.Data.SqlDbType.Int, 
+                    Value = this.idFilme 
+                }
             };
 
             bd.executeSQL(SQL, parametros);
         }
 
-        // Implementação do método da Interface Item
         public void Apagar()
         {
-            // Apaga o registo de aluguer
             string SQL = "DELETE FROM ALUGUER WHERE IDALUGUER = " + idAluguer;
             bd.executeSQL(SQL);
         }
 
-        // Implementação do método da Interface Item (sem parâmetros)
         public List<string> Validar()
         {
             List<string> error = new List<string>();
@@ -127,7 +151,6 @@ namespace theVault.Alugueres
 
         public DataTable Listar()
         {
-            // Listagem com JOIN para mostrar nomes legíveis
             string SQL = @"SELECT 
                             A.IDALUGUER AS [ID], 
                             C.NOME AS [Cliente], 
@@ -166,7 +189,6 @@ namespace theVault.Alugueres
 
         public DataTable Procurar(string texto)
         {
-            // Pesquisa por Nome de Cliente ou Filme
             string SQL = @"SELECT 
                             A.IDALUGUER AS [ID], 
                             C.NOME AS [Cliente], 

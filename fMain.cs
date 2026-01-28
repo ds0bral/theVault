@@ -43,5 +43,16 @@ namespace theVault
         {
             Application.Exit();
         }
+        private void fMain_Load(object sender, EventArgs e)
+        {
+            dgvFilmes.AllowUserToAddRows = false;
+            dgvFilmes.AllowUserToDeleteRows = false;
+            dgvFilmes.MultiSelect = false;
+            dgvFilmes.ReadOnly = true;
+            dgvFilmes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            Filmes.Filmes f = new Filmes.Filmes(bd);
+            dgvFilmes.DataSource = f.ListarNovosFilmes();
+        }
+
     }
 }

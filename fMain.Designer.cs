@@ -83,21 +83,21 @@
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.clientesToolStripMenuItem.Text = "&Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // filmesToolStripMenuItem
             // 
             this.filmesToolStripMenuItem.Name = "filmesToolStripMenuItem";
-            this.filmesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.filmesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.filmesToolStripMenuItem.Text = "&Filmes";
             this.filmesToolStripMenuItem.Click += new System.EventHandler(this.filmesToolStripMenuItem_Click);
             // 
             // alugueresToolStripMenuItem
             // 
             this.alugueresToolStripMenuItem.Name = "alugueresToolStripMenuItem";
-            this.alugueresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.alugueresToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.alugueresToolStripMenuItem.Text = "&Alugueres";
             this.alugueresToolStripMenuItem.Click += new System.EventHandler(this.alugueresToolStripMenuItem_Click);
             // 
@@ -143,6 +143,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "fMain";
             this.Text = "The Vault | Videoclubes";
+            this.Load += new System.EventHandler(this.fMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilmes)).EndInit();

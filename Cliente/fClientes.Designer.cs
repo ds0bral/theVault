@@ -182,7 +182,7 @@
             // lblFeedback
             // 
             this.lblFeedback.AutoSize = true;
-            this.lblFeedback.Location = new System.Drawing.Point(171, 338);
+            this.lblFeedback.Location = new System.Drawing.Point(168, 356);
             this.lblFeedback.Name = "lblFeedback";
             this.lblFeedback.Size = new System.Drawing.Size(0, 13);
             this.lblFeedback.TabIndex = 14;
@@ -254,7 +254,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(112, 309);
+            this.btnEdit.Location = new System.Drawing.Point(113, 309);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(122, 37);
             this.btnEdit.TabIndex = 21;

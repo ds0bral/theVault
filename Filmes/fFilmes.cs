@@ -82,7 +82,6 @@ namespace theVault.Filmes
         }
         private void ListarFilmes()
         {
-            // Configurar a dgvLivros
             dgvFilmes.AllowUserToAddRows = false;
             dgvFilmes.AllowUserToDeleteRows = false;
             dgvFilmes.MultiSelect = false;

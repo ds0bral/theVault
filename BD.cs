@@ -120,7 +120,11 @@ namespace theVault
                             CHECK (PAGO IS NULL OR PAGO >= 0),
                         CONSTRAINT CKREAL CHECK (DATAREAL IS NULL OR DATAREAL >= DATA),
                         CONSTRAINT CKPREVISTA CHECK (DATAPREVISTA >= CAST(DATA AS DATE)),
-                        );";
+                        );
+                        
+                        CREATE INDEX NOME ON CLIENTES(NOME);
+                        CREATE INDEX TITULOS ON FILMES(GENERO)
+                        ";
 
             comando = new SqlCommand(SQL,linkSQL);
             comando.ExecuteNonQuery();
