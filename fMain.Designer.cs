@@ -83,21 +83,21 @@
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.clientesToolStripMenuItem.Text = "&Clientes";
             this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // filmesToolStripMenuItem
             // 
             this.filmesToolStripMenuItem.Name = "filmesToolStripMenuItem";
-            this.filmesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.filmesToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.filmesToolStripMenuItem.Text = "&Filmes";
             this.filmesToolStripMenuItem.Click += new System.EventHandler(this.filmesToolStripMenuItem_Click);
             // 
             // alugueresToolStripMenuItem
             // 
             this.alugueresToolStripMenuItem.Name = "alugueresToolStripMenuItem";
-            this.alugueresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.alugueresToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.alugueresToolStripMenuItem.Text = "&Alugueres";
             this.alugueresToolStripMenuItem.Click += new System.EventHandler(this.alugueresToolStripMenuItem_Click);
             // 
@@ -114,9 +114,9 @@
             // dgvFilmes
             // 
             this.dgvFilmes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFilmes.Location = new System.Drawing.Point(12, 272);
+            this.dgvFilmes.Location = new System.Drawing.Point(12, 274);
             this.dgvFilmes.Name = "dgvFilmes";
-            this.dgvFilmes.Size = new System.Drawing.Size(735, 297);
+            this.dgvFilmes.Size = new System.Drawing.Size(735, 328);
             this.dgvFilmes.TabIndex = 2;
             // 
             // pictureBox1
@@ -134,7 +134,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(759, 581);
+            this.ClientSize = new System.Drawing.Size(759, 616);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dgvFilmes);
@@ -143,6 +143,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "fMain";
             this.Text = "The Vault | Videoclubes";
+            this.Load += new System.EventHandler(this.fMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilmes)).EndInit();

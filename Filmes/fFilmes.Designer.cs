@@ -51,7 +51,7 @@
             this.txtProcurar = new System.Windows.Forms.TextBox();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.lblClientes = new System.Windows.Forms.Label();
+            this.lblFilmes = new System.Windows.Forms.Label();
             this.dgvFilmes = new System.Windows.Forms.DataGridView();
             this.lblErro = new System.Windows.Forms.Label();
             this.txtAno = new System.Windows.Forms.TextBox();
@@ -61,6 +61,8 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnGenero = new System.Windows.Forms.Button();
+            this.btnDesagrupar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilmes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCapa)).BeginInit();
             this.SuspendLayout();
@@ -239,16 +241,17 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(1055, 262);
+            this.btnPrint.Location = new System.Drawing.Point(1048, 204);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(122, 65);
             this.btnPrint.TabIndex = 34;
             this.btnPrint.Text = "Imprimir";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(1055, 144);
+            this.btnEliminar.Location = new System.Drawing.Point(1048, 123);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(122, 65);
             this.btnEliminar.TabIndex = 33;
@@ -257,16 +260,16 @@
             this.btnEliminar.Visible = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // lblClientes
+            // lblFilmes
             // 
-            this.lblClientes.AutoSize = true;
-            this.lblClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClientes.Location = new System.Drawing.Point(451, 29);
-            this.lblClientes.Name = "lblClientes";
-            this.lblClientes.Size = new System.Drawing.Size(100, 31);
-            this.lblClientes.TabIndex = 32;
-            this.lblClientes.Text = "Filmes";
-            this.lblClientes.UseWaitCursor = true;
+            this.lblFilmes.AutoSize = true;
+            this.lblFilmes.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilmes.Location = new System.Drawing.Point(451, 29);
+            this.lblFilmes.Name = "lblFilmes";
+            this.lblFilmes.Size = new System.Drawing.Size(100, 31);
+            this.lblFilmes.TabIndex = 32;
+            this.lblFilmes.Text = "Filmes";
+            this.lblFilmes.UseWaitCursor = true;
             // 
             // dgvFilmes
             // 
@@ -339,11 +342,34 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // btnGenero
+            // 
+            this.btnGenero.Location = new System.Drawing.Point(1048, 284);
+            this.btnGenero.Name = "btnGenero";
+            this.btnGenero.Size = new System.Drawing.Size(122, 65);
+            this.btnGenero.TabIndex = 42;
+            this.btnGenero.Text = "Agrupar por género";
+            this.btnGenero.UseVisualStyleBackColor = true;
+            this.btnGenero.Click += new System.EventHandler(this.btnGenero_Click);
+            // 
+            // btnDesagrupar
+            // 
+            this.btnDesagrupar.Location = new System.Drawing.Point(1048, 284);
+            this.btnDesagrupar.Name = "btnDesagrupar";
+            this.btnDesagrupar.Size = new System.Drawing.Size(122, 65);
+            this.btnDesagrupar.TabIndex = 43;
+            this.btnDesagrupar.Text = "Desagrupar";
+            this.btnDesagrupar.UseVisualStyleBackColor = true;
+            this.btnDesagrupar.Visible = false;
+            this.btnDesagrupar.Click += new System.EventHandler(this.btnDesagrupar_Click);
+            // 
             // fFilmes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1199, 416);
+            this.Controls.Add(this.btnDesagrupar);
+            this.Controls.Add(this.btnGenero);
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.lblCapa);
             this.Controls.Add(this.picCapa);
@@ -353,7 +379,7 @@
             this.Controls.Add(this.txtProcurar);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.lblClientes);
+            this.Controls.Add(this.lblFilmes);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.lblFeedback);
             this.Controls.Add(this.btnCancel);
@@ -375,6 +401,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fFilmes";
             this.Text = "Gestão dos filmes";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fFilmes_FormClosed);
             this.Load += new System.EventHandler(this.fFilmes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilmes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCapa)).EndInit();
@@ -406,7 +433,7 @@
         private System.Windows.Forms.TextBox txtProcurar;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Label lblClientes;
+        private System.Windows.Forms.Label lblFilmes;
         private System.Windows.Forms.DataGridView dgvFilmes;
         private System.Windows.Forms.Label lblErro;
         private System.Windows.Forms.TextBox txtAno;
@@ -416,5 +443,7 @@
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button btnGenero;
+        private System.Windows.Forms.Button btnDesagrupar;
     }
 }

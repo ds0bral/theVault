@@ -253,5 +253,10 @@ namespace theVault.Cliente
         {
             findFoto();
         }
+
+        private void fClientes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Utils.closeForm(this, main);
+        }
     }
 }

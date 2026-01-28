@@ -10,14 +10,12 @@ namespace theVault.Alugueres
 {
     internal class Alugueres : Item
     {
-        // Propriedades da tabela ALUGUER
         public int idAluguer { get; set; }
         public int idCliente { get; set; }
         public int idFilme { get; set; }
-        public DateTime data { get; set; }          // Data do registo (automática na BD)
-        public DateTime dataPrevista { get; set; }  // Data limite para entrega
-        public DateTime? dataReal { get; set; }     // Data real da entrega (pode ser null)
-        public decimal? pago { get; set; }          // Valor pago (pode ser null)
+        public DateTime data { get; set; }          
+        public DateTime dataPrevista { get; set; }  
+        public DateTime dataReal { get; set; }            
 
         BD bd;
 
@@ -26,10 +24,8 @@ namespace theVault.Alugueres
             this.bd = bd;
         }
 
-        // Implementação do método da Interface Item
         public void Adicionar()
         {
-            // Adiciona o aluguer E desconta 1 ao stock do filme
             string SQL = @"INSERT INTO ALUGUER(IDCLIENTE, IDFILME, DATAPREVISTA)
                            VALUES (@IDCLIENTE, @IDFILME, @DATAPREVISTA);
                            
@@ -37,45 +33,65 @@ namespace theVault.Alugueres
 
             List<SqlParameter> parametros = new List<SqlParameter>()
             {
-                new SqlParameter { ParameterName = "@IDCLIENTE", SqlDbType = SqlDbType.Int, Value = this.idCliente },
-                new SqlParameter { ParameterName = "@IDFILME", SqlDbType = SqlDbType.Int, Value = this.idFilme },
-                new SqlParameter { ParameterName = "@DATAPREVISTA", SqlDbType = SqlDbType.Date, Value = this.dataPrevista }
+                new SqlParameter 
+                { ParameterName = "@IDCLIENTE", 
+                    SqlDbType = System.Data.SqlDbType.Int, 
+                    Value = this.idCliente 
+                },
+                new SqlParameter 
+                { ParameterName = "@IDFILME",
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Value = this.idFilme 
+                },
+                new SqlParameter 
+                { ParameterName = "@DATAPREVISTA", 
+                    SqlDbType = System.Data.SqlDbType.Date, 
+                    Value = this.dataPrevista 
+                }
             };
 
             bd.executeSQL(SQL, parametros);
         }
 
-        // Implementação do método da Interface Item
         public void Atualizar()
         {
-            // Regista a devolução (DataReal e Pago) E repõe 1 ao stock do filme
             string SQL = @"UPDATE ALUGUER
                            SET DATAREAL = @DATAREAL,
-                               PAGO = @PAGO
                            WHERE IDALUGUER = @IDALUGUER;
 
                            UPDATE FILMES SET STOCK = STOCK + 1 WHERE IDFILME = @IDFILME;";
 
             List<SqlParameter> parametros = new List<SqlParameter>()
             {
-                new SqlParameter { ParameterName = "@DATAREAL", SqlDbType = SqlDbType.DateTime, Value = (object)this.dataReal ?? DBNull.Value },
-                new SqlParameter { ParameterName = "@PAGO", SqlDbType = SqlDbType.Decimal, Value = (object)this.pago ?? DBNull.Value },
-                new SqlParameter { ParameterName = "@IDALUGUER", SqlDbType = SqlDbType.Int, Value = this.idAluguer },
-                new SqlParameter { ParameterName = "@IDFILME", SqlDbType = SqlDbType.Int, Value = this.idFilme }
+                new SqlParameter 
+                { 
+                    ParameterName = "@DATAREAL", 
+                    SqlDbType = System.Data.SqlDbType.DateTime, 
+                    Value = (object)this.dataReal ?? DBNull.Value 
+                },
+                new SqlParameter 
+                { 
+                    ParameterName = "@IDALUGUER", 
+                    SqlDbType = System.Data.SqlDbType.Int, 
+                    Value = this.idAluguer 
+                },
+                new SqlParameter 
+                { 
+                    ParameterName = "@IDFILME", 
+                    SqlDbType = System.Data.SqlDbType.Int, 
+                    Value = this.idFilme 
+                }
             };
 
             bd.executeSQL(SQL, parametros);
         }
 
-        // Implementação do método da Interface Item
         public void Apagar()
         {
-            // Apaga o registo de aluguer
             string SQL = "DELETE FROM ALUGUER WHERE IDALUGUER = " + idAluguer;
             bd.executeSQL(SQL);
         }
 
-        // Implementação do método da Interface Item (sem parâmetros)
         public List<string> Validar()
         {
             List<string> error = new List<string>();
@@ -87,8 +103,6 @@ namespace theVault.Alugueres
             // 2. Lógica Condicional baseada no ID (Novo vs Existente)
             if (idAluguer == 0)
             {
-                // --- REGRAS PARA NOVO ALUGUER (ADICIONAR) ---
-
                 // Validar Data Prevista
                 if (dataPrevista < DateTime.Today)
                 {
@@ -106,19 +120,11 @@ namespace theVault.Alugueres
             }
             else
             {
-                // --- REGRAS PARA DEVOLUÇÃO/ATUALIZAÇÃO (ATUALIZAR) ---
-
                 // Validar Data de Entrega
                 // Nota: 'data' é a data original do aluguer carregada pelo método Procurar()
-                if (dataReal.HasValue && dataReal.Value < data)
+                if (dataReal.Date > data.Date)
                 {
                     error.Add("A Data Real de entrega não pode ser anterior à data do aluguer.");
-                }
-
-                // Validar Pagamento
-                if (pago.HasValue && pago.Value < 0)
-                {
-                    error.Add("O valor pago não pode ser negativo.");
                 }
             }
 
@@ -127,19 +133,17 @@ namespace theVault.Alugueres
 
         public DataTable Listar()
         {
-            // Listagem com JOIN para mostrar nomes legíveis
             string SQL = @"SELECT 
-                            A.IDALUGUER AS [ID], 
-                            C.NOME AS [Cliente], 
-                            F.TITULO AS [Filme], 
-                            A.DATA AS [Data Aluguer], 
-                            A.DATAPREVISTA AS [Data Prevista], 
-                            A.DATAREAL AS [Data Entrega], 
-                            A.PAGO AS [Pago (€)]
-                           FROM ALUGUER A
-                           INNER JOIN CLIENTES C ON A.IDCLIENTE = C.IDCLIENTE
-                           INNER JOIN FILMES F ON A.IDFILME = F.IDFILME
-                           ORDER BY A.DATA DESC";
+                            IDALUGUER AS [ID], 
+                            CLIENTE.NOME AS [Cliente], 
+                            FILMES.TITULO AS [Filme], 
+                            DATA AS [Data Aluguer], 
+                            DATAPREVISTA AS [Data Prevista], 
+                            DATAREAL AS [Data Entrega], 
+                           FROM ALUGUER
+                           INNER JOIN CLIENTES ON ALUGUER.IDCLIENTE = CLIENTE.IDCLIENTE
+                           INNER JOIN FILMES ON ALUGUER.IDFILME = FILMES.IDFILME
+                           ORDER BY DATA DESC";
 
             return bd.returnSQL(SQL);
         }
@@ -158,27 +162,22 @@ namespace theVault.Alugueres
 
                 if (linha["DATAREAL"] != DBNull.Value)
                     this.dataReal = DateTime.Parse(linha["DATAREAL"].ToString());
-
-                if (linha["PAGO"] != DBNull.Value)
-                    this.pago = decimal.Parse(linha["PAGO"].ToString());
             }
         }
 
         public DataTable Procurar(string texto)
         {
-            // Pesquisa por Nome de Cliente ou Filme
             string SQL = @"SELECT 
-                            A.IDALUGUER AS [ID], 
-                            C.NOME AS [Cliente], 
-                            F.TITULO AS [Filme], 
-                            A.DATA AS [Data Aluguer], 
-                            A.DATAPREVISTA AS [Data Prevista], 
-                            A.DATAREAL AS [Data Entrega], 
-                            A.PAGO AS [Pago (€)]
-                           FROM ALUGUER A
-                           INNER JOIN CLIENTES C ON A.IDCLIENTE = C.IDCLIENTE
-                           INNER JOIN FILMES F ON A.IDFILME = F.IDFILME
-                           WHERE C.NOME LIKE @PESQUISA OR F.TITULO LIKE @PESQUISA";
+                            IDALUGUER AS [ID], 
+                            CLIENTE.NOME AS [Cliente], 
+                            FILMES.TITULO AS [Filme], 
+                            DATA AS [Data Aluguer], 
+                            DATAPREVISTA AS [Data Prevista], 
+                            DATAREAL AS [Data Entrega], 
+                           FROM ALUGUER
+                           INNER JOIN CLIENTES ON ALUGUER.IDCLIENTE = CLIENTES.IDCLIENTE
+                           INNER JOIN FILMES ON ALUGUER.IDFILME = FILMES.IDFILME
+                           WHERE CLIENTES.NOME LIKE @PESQUISA OR FILMES.TITULO LIKE @PESQUISA";
 
             List<SqlParameter> parametros = new List<SqlParameter>()
             {

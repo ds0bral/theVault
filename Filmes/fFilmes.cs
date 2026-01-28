@@ -82,14 +82,13 @@ namespace theVault.Filmes
         }
         private void ListarFilmes()
         {
-            // Configurar a dgvLivros
             dgvFilmes.AllowUserToAddRows = false;
             dgvFilmes.AllowUserToDeleteRows = false;
             dgvFilmes.MultiSelect = false;
             dgvFilmes.ReadOnly = true;
             dgvFilmes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            Filmes l = new Filmes(bd);
-            dgvFilmes.DataSource = l.Listar();
+            Filmes f = new Filmes(bd);
+            dgvFilmes.DataSource = f.Listar();
         }
         private void LimparForm()
         {
@@ -100,6 +99,7 @@ namespace theVault.Filmes
             txtDuracao.Text = "";
             txtPreco.Text = "";
             txtStck.Text = "";
+            picCapa.Image = (Image)picCapa.Tag;
         }
         private void EliminarLivro()
         {
@@ -240,6 +240,31 @@ namespace theVault.Filmes
         {
             ListarFilmes();
             picCapa.Tag = picCapa.Image;
+        }
+
+        private void btnGenero_Click(object sender, EventArgs e)
+        {
+            dgvFilmes.AllowUserToAddRows = false;
+            dgvFilmes.AllowUserToDeleteRows = false;
+            dgvFilmes.MultiSelect = false;
+            dgvFilmes.ReadOnly = true;
+            dgvFilmes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            Filmes f = new Filmes(bd);
+            dgvFilmes.DataSource = f.AgruparGenero();
+            btnDesagrupar.Visible = true;
+            btnGenero.Visible = false;
+        }
+
+        private void btnDesagrupar_Click(object sender, EventArgs e)
+        {
+            ListarFilmes();
+            btnDesagrupar.Visible = false;
+            btnGenero.Visible = true;
+        }
+
+        private void fFilmes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Utils.closeForm(this, main);
         }
     }
 }

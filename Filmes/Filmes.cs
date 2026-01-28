@@ -26,31 +26,27 @@ namespace theVault.Filmes
         {
             this.bd = bd;
         }
-        public DataTable filtroGenero(string genero)
+        /*
+        public string statisticsGenero()
         {
-            // Se o utilizador escolher "Todos", mostramos a lista completa normal
-            if (string.IsNullOrEmpty(genero) || genero == "Todos")
+            string SQL = @"SELECT GENERO, COUNT(IDFILME) AS QTD 
+                           FROM FILMES 
+                           GROUP BY GENERO";
+
+            DataTable dt = bd.returnSQL(SQL);
+
+            string resultado = "Contagem de Filmes por Género:\n\n";
+
+            foreach (DataRow row in dt.Rows)
             {
-                return Listar();
+                resultado += $"{row["GENERO"]}: {row["STOCK"]} filmes\n";
             }
 
-            string SQL = @"SELECT 
-                            IDFILME, TITULO, GENERO, ANO, DIRETOR, DURACAO, PRECO, STOCK 
-                           FROM FILMES 
-                           WHERE GENERO = @GENERO";
-
-            List<SqlParameter> parametros = new List<SqlParameter>()
-            {
-                new SqlParameter
-                {
-                    ParameterName = "@GENERO",
-                    SqlDbType = System.Data.SqlDbType.NVarChar,
-                    Value = genero
-                }
-            };
-
-            return bd.returnSQL(SQL, parametros);
+            return resultado;
         }
+        */
+
+       
         public void Adicionar()
         {
             string SQL = @"INSERT INTO FILMES(TITULO, GENERO, ANO, DIRETOR, DURACAO, PRECO, STOCK, CAPA)
@@ -256,6 +252,17 @@ namespace theVault.Filmes
         {
             return bd.returnSQL("SELECT IDFILME AS [ID], TITULO AS [Título], GENERO AS [Género], ANO AS [Ano], DIRETOR AS [Diretor], DURACAO AS [Duração (Min)], PRECO AS [Preço (€)], STOCK AS [Stock] FROM FILMES");
         }
+
+        public DataTable ListarNovosFilmes()
+        {
+            return bd.returnSQL("SELECT TOP 10 * FROM FILMES ORDER BY IDFILME DESC");
+        }
+
+        public DataTable AgruparGenero()
+        {
+            return bd.returnSQL("SELECT COUNT(*) FROM FILMES GROUP BY GENERO");
+        }
+
         public void Procurar()
         {
             string SQL = "SELECT * FROM FILMES WHERE IDFILME = " + idFilme;

@@ -22,5 +22,10 @@ namespace theVault.Alugueres
             this.bd = bd;
             this.main = main;
         }
+
+        private void fAlugueres_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Utils.closeForm(this, main);
+        }
     }
 }
